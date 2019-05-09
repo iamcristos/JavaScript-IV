@@ -66,6 +66,28 @@ class Instructor extends Personel {
     }
 }
 
-class ProjectManagers {
-    
+
+/**
+ * 
+ * 
+ * @class ProjectManagers
+ * @extends {Instructor}
+ */
+class ProjectManagers extends Instructor{
+    constructor (name, age, location, gender, catchPhrase, specialty, role, noOfStudents){
+        super (name, age, location, gender, catchPhrase, specialty, role);
+        this.noOfStudents = noOfStudents;
+    }
+
+
+    /**
+     * 
+     * 
+     * @returns a string with no of students 
+     * 
+     * @memberOf ProjectManagers
+     */
+    studentsAttached () {
+        return (`${this.name} is managing ${this.noOfStudents} students`);
+    }
 }
