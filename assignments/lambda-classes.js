@@ -100,16 +100,16 @@ class Students extends Person {
 
     graduate (instructor) {
         if (this.grade >= 70) {
-            return `congratulations ${this.name} you have graduated.`
+            return `congratulations ${this.name} you have graduated with ${this.grade}.`
         } else {
                 let i = 0;
                 while(i<1) {
                     i++
                     instructor.points(75);
                     if (this.grade >= 70) {
-                        return `congratulations ${this.name} you have graduated.`
+                        return `congratulations ${this.name} you have graduated with ${this.grade}.`
                     } else {
-                        return `${this.name} cannot graduate`
+                        return `${this.name} cannot graduate with ${this.grade}`
                     }
                 }
             } 
