@@ -1,6 +1,6 @@
 // CODE here for your Lambda Classes
 class Person {
-    constructor(name, age, location, gender) {
+    constructor({name, age, location, gender}) {
         this.name = name;
         this.age = age;
         this.location = location;
@@ -14,14 +14,12 @@ class Person {
 
 
 /**
- * 
- * 
  * @class Students
  * @extends {Person}
  */
 class Students extends Person {
-    constructor (name, age, location, gender, previouBackground, className, favSubjects) {
-        super(name, age, location, gender, catchPhrase);
+    constructor ({name, age, location, gender, previouBackground, className,favSubjects}) {
+        super({name, age, location, gender});
         this.previouBackground = previouBackground;
         this.className = className;
         this.favSubjects = favSubjects;
@@ -29,23 +27,18 @@ class Students extends Person {
 
 
     /**
-     * 
-     * 
      * @returns a string listing students favorite subject one by one
-     * 
      * @memberOf Students
      */
     listsSubjects () {
-        return this.favSubjects.forEach((favSubject, i) => `${i}: ${favSubject};`)
+        console.log(this.favSubjects);
+        return this.favSubjects.forEach((favSubject, i) => console.log(`${i+1}: ${favSubject};`));
     }
 
 
     /**
-     * 
-     * 
      * @param {any} subject 
      * @returns student PR on a subject
-     * 
      * @memberOf Students
      */
     PRAssignment (subject) {
@@ -54,11 +47,8 @@ class Students extends Person {
 
 
     /**
-     * 
-     * 
      * @param {any} subject 
      * @returns sprint challange a student starts
-     * 
      * @memberOf Students
      */
     sprintChallenge (subject) {
@@ -68,14 +58,12 @@ class Students extends Person {
 
 
 /**
- * 
- * 
  * @class Instructor
  * @extends {Person}
  */
 class Instructor extends Person {
-    constructor (name, age, location, gender, catchPhrase, specialty){
-        super (name, age, location, gender);
+    constructor ({name, age, location, gender, specialty,favLanguage, catchPhrase}){
+        super ({name, age, location, gender});
         this.specialty = specialty;
         this.favLanguage = favLanguage;
         this.catchPhrase = catchPhrase;
@@ -83,10 +71,7 @@ class Instructor extends Person {
 
 
     /**
-     * 
-     * 
      * @returns a string of learning subject
-     * 
      * @memberOf Instructor
      */
     demo (subject) {
@@ -95,39 +80,31 @@ class Instructor extends Person {
 
 
     /**
-     * 
-     * 
      * @param {any} student 
      * @param {any} subject 
      * @returns a tring of each students name with a perfect score on a subject
-     * 
      * @memberOf Instructor
      */
     grade (student, subject) {
-       return student.forEach(student => `${student.name} recieves a perfect score on ${subject}`)
+       return `${student.name} recieves a perfect score on ${subject}`;
     }
 }
 
 
 /**
- * 
- * 
  * @class ProjectManagers
  * @extends {Instructor}
  */
 class ProjectManagers extends Instructor{
-    constructor(name, age, location, gender, catchPhrase, specialty, gradClassName, favInstructor) {
-        super (name, age, location, gender, catchPhrase, specialty);
+    constructor({name, age, location, gender, catchPhrase, specialty, gradClassName, favInstructor}) {
+        super ({name, age, location, gender, catchPhrase, specialty});
         this.gradClassName = gradClassName;
         this.favInstructor = favInstructor
     }
 
 
     /**
-     * 
-     * 
      * @returns a reminder for standup
-     * 
      * @memberOf ProjectManagers
      */
     standUp (channel) {
@@ -135,7 +112,36 @@ class ProjectManagers extends Instructor{
     }
 
     debugsCode (student, subject) {
-        return student.forEach(student => `${this.name} debugs ${student.name}'s code on ${subject}`)
+        return `${this.name} debugs ${student.name}'s code on ${subject}`;
     }
 }
 
+const fred = new Instructor({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`,
+    gradClassName: 'CS1',
+    favInstructor: 'Sean'
+  });
+
+  console.log(fred.demo('javascript'))
+  
+
+  const damola = new Students({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37,
+    gender: 'male',
+    favSubjects: ['JavaScript','Html', 'CSS'],
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`,
+    gradClassName: 'CS1',
+    favInstructor: 'Sean'
+  });
+  console.log(fred.grade(damola,'java'))
+  console.log(damola.listsSubjects())
+  console.log(damola.sprintChallenge('java'))
